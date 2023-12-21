@@ -1,0 +1,1096 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "atTime",
+				"type": "uint256"
+			}
+		],
+		"name": "EApproveProposal",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "atTime",
+				"type": "uint256"
+			}
+		],
+		"name": "ECodeProposalVote",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"name": "ECreateCodeProposal",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"name": "ECreateUserProposal",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "atTime",
+				"type": "uint256"
+			}
+		],
+		"name": "EUserProposalVote",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "ADD_MEMBER",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ADD_OWNER",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "CREATE_CODE",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "IsMember",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "IsOwner",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "REVOKE_MEMBER",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "REVOKE_OWNER",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "VOTING_RATE_APPROVED_TARGET",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "codeProposalList",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "code",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "createdAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "codeValue",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expirationAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "releasePercentage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "times",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalLockTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "interactiveKey",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "specialRule",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_codeValue",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_expirationAfterDay",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_releasePercentage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_times",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totalDayLockTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isInteractiveKey",
+				"type": "bool"
+			}
+		],
+		"name": "createCodeProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nominee",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_votingWeight",
+				"type": "uint256"
+			}
+		],
+		"name": "createMemberProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nominee",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_votingRate",
+				"type": "uint256"
+			}
+		],
+		"name": "createOwnerProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "codeHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "getCodeInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "codeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "releasePercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "times",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalLockTime",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct PackageInfo",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_proposalId",
+				"type": "uint256"
+			}
+		],
+		"name": "getCodeProposalInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "code",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "codeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "releasePercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "times",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalLockTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "interactiveKey",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct CodeProposal",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			}
+		],
+		"name": "getCodeProposalList",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isMore",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "code",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "codeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "releasePercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "times",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalLockTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "interactiveKey",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct CodeProposal[]",
+				"name": "proposalList_",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMemberLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getOwnerLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTotalCodeProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTotalUserProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_proposalId",
+				"type": "uint256"
+			}
+		],
+		"name": "getUserProposalInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "types",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingWeight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "nominee",
+						"type": "address"
+					}
+				],
+				"internalType": "struct UserProposal",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			}
+		],
+		"name": "getUserProposalList",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isMore",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "types",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingWeight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "nominee",
+						"type": "address"
+					}
+				],
+				"internalType": "struct UserProposal[]",
+				"name": "proposalList_",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "hasVoted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "indexOfMember",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "indexOfOwner",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "memberList",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ownerList",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "returnRIP",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalCreatedCode",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalVoteWeight",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userProposalList",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "types",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "createdAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "votingRate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "votingWeight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "nominee",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "validProposalType",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_proposalId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_option",
+				"type": "bool"
+			}
+		],
+		"name": "voteCodeProposal",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_proposalId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "_option",
+				"type": "bool"
+			}
+		],
+		"name": "voteUserProposal",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voteWeight",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "votingRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "votingRateDecimal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
