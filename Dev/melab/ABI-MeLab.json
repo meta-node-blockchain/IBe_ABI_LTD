@@ -7,7 +7,7 @@
 				"type": "address"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "constructor"
 	},
 	{
@@ -106,6 +106,25 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
 		"inputs": [],
 		"name": "ADD_MEMBER",
 		"outputs": [
@@ -139,32 +158,6 @@
 				"internalType": "bytes32",
 				"name": "",
 				"type": "bytes32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "IsMember",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "IsOwner",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -212,6 +205,51 @@
 	{
 		"inputs": [
 			{
+				"internalType": "bytes32",
+				"name": "code",
+				"type": "bytes32"
+			}
+		],
+		"name": "activateCode",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "boostSpeedDecimal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "boostStorage",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -250,6 +288,11 @@
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
+				"name": "boostSpeed",
+				"type": "uint256"
+			},
+			{
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
@@ -271,13 +314,13 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "totalLockTime",
+				"name": "lockTime",
 				"type": "uint256"
 			},
 			{
-				"internalType": "bytes32",
+				"internalType": "address",
 				"name": "interactiveKey",
-				"type": "bytes32"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -324,6 +367,11 @@
 				"internalType": "bool",
 				"name": "_isInteractiveKey",
 				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "_interactiveKey",
+				"type": "address"
 			}
 		],
 		"name": "createCodeProposal",
@@ -393,13 +441,18 @@
 				"type": "bytes32"
 			}
 		],
-		"name": "getCodeInfo",
+		"name": "getCodeInfoSmC",
 		"outputs": [
 			{
 				"components": [
 					{
 						"internalType": "uint256",
 						"name": "codeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "boostSpeed",
 						"type": "uint256"
 					},
 					{
@@ -424,13 +477,109 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "totalLockTime",
+						"name": "lockTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "interactiveKey",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainTimes",
 						"type": "uint256"
 					}
 				],
 				"internalType": "struct PackageInfo",
 				"name": "",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			}
+		],
+		"name": "getCodeList",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isMore",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "codeValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "boostSpeed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "releasePercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "times",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lockTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "interactiveKey",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainTimes",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct PackageInfo[]",
+				"name": "codeList_",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -479,6 +628,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "boostSpeed",
+						"type": "uint256"
+					},
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -500,13 +654,13 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "totalLockTime",
+						"name": "lockTime",
 						"type": "uint256"
 					},
 					{
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "interactiveKey",
-						"type": "bytes32"
+						"type": "address"
 					}
 				],
 				"internalType": "struct CodeProposal",
@@ -565,6 +719,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "boostSpeed",
+						"type": "uint256"
+					},
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -586,13 +745,13 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "totalLockTime",
+						"name": "lockTime",
 						"type": "uint256"
 					},
 					{
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "interactiveKey",
-						"type": "bytes32"
+						"type": "address"
 					}
 				],
 				"internalType": "struct CodeProposal[]",
@@ -619,6 +778,25 @@
 	{
 		"inputs": [],
 		"name": "getOwnerLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getTotalCode",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -785,6 +963,87 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "startTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			}
+		],
+		"name": "getUserProposalListByTime",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "count",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isMore",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "types",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "votingWeight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "nominee",
+						"type": "address"
+					}
+				],
+				"internalType": "struct UserProposal[]",
+				"name": "proposalList_",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -845,6 +1104,56 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "isMember",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isOwner",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "mCodeList",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -853,6 +1162,32 @@
 			}
 		],
 		"name": "memberList",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "miningMeLab",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -884,6 +1219,26 @@
 	},
 	{
 		"inputs": [],
+		"name": "rateBoost",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "returnRIP",
 		"outputs": [
 			{
@@ -893,6 +1248,70 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nominee",
+				"type": "address"
+			}
+		],
+		"name": "revokeMemberProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_nominee",
+				"type": "address"
+			}
+		],
+		"name": "revokeOwnerProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposalId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_boostStorage",
+				"type": "address"
+			}
+		],
+		"name": "setBoostStorage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_miningMeLab",
+				"type": "address"
+			}
+		],
+		"name": "setMiningLab",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -911,6 +1330,56 @@
 	{
 		"inputs": [],
 		"name": "totalVoteWeight",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "code",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "newRemainTimes",
+				"type": "uint256"
+			}
+		],
+		"name": "updateRemainTime",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "usdtDecimal",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -970,25 +1439,6 @@
 				"internalType": "address",
 				"name": "nominee",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "validProposalType",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
